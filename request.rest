@@ -1,0 +1,53 @@
+###
+GET http://localhost:5000/api/rooms
+
+###
+POST http://localhost:5000/api/rooms
+Content-Type: application/json
+
+{
+        "name": "test room 3",
+        "price": 500,
+        "desc": "some description",
+        "roomNumbers":[{
+            "number": 101,
+            "unavailableDates": ["2024-01-24", "2024-01-26"]
+        }]
+}
+
+# get single room
+###
+GET http://localhost:5000/api/rooms/65d6368265248088c8e5cfd0
+
+# update room
+###
+PUT http://localhost:5000/api/rooms/65d6368265248088c8e5cfd0
+Content-Type: application/json
+
+{
+    "name": "updated name",
+    "price": 10000
+}
+
+#delete room
+###
+DELETE http://localhost:5000/api/rooms/65d6368265248088c8e5cfd0
+
+
+# get bookings
+###
+GET http://localhost:5000/api/bookings
+
+
+#create booking
+###
+POST  http://localhost:5000/api/bookings
+Content-Type: application/json
+
+{
+    "roomId": "65d636b92bf1aa39d062068a",
+    "name": "kofi arhin",
+    "email": "kofiarhin@gmail.com",
+    "checkInDate": "2024-02-25",
+    "checkOutDate": "2024-02-26",
+}

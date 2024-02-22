@@ -1,6 +1,8 @@
 ###
 GET http://localhost:5000/api/rooms
 
+
+# create room
 ###
 POST http://localhost:5000/api/rooms
 Content-Type: application/json
@@ -38,16 +40,70 @@ DELETE http://localhost:5000/api/rooms/65d6368265248088c8e5cfd0
 ###
 GET http://localhost:5000/api/bookings
 
+# get single booking
+###
+GET http://localhost:5000/api/bookings/65d6414ad7204a2ccfffeed7
+
 
 #create booking
 ###
-POST  http://localhost:5000/api/bookings
+POST http://localhost:5000/api/bookings
 Content-Type: application/json
 
 {
     "roomId": "65d636b92bf1aa39d062068a",
-    "name": "kofi arhin",
+    "name": "lebron james",
     "email": "kofiarhin@gmail.com",
-    "checkInDate": "2024-02-25",
-    "checkOutDate": "2024-02-26",
+    "checkInDate": "2024-010-28",
+    "checkOutDate": "2024-010-29"
 }
+
+#update booking
+###
+PUT http://localhost:5000/api/bookings/65d640bc295e673321f3883b
+Content-Type: application/json
+
+{
+    "name": "updated name",
+    "email": "updated@gmail.com"
+}
+
+
+#delete 
+###
+DELETE http://localhost:5000/api/bookings/65d6414ad7204a2ccfffeed7
+
+
+#get users
+###
+GET http://localhost:5000/api/users
+
+#create user
+###
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+    "name": "james harden",
+    "email": "harden@gmail.com",
+    "password": "password"
+}
+
+
+#login user
+###
+POST http://localhost:5000/api/users/login
+Content-Type: application/json
+
+{
+    "email": "harden@gmail.com",
+    "password": "password"
+}
+
+#logout user
+###
+http://localhost:5000/api/users/logout
+
+#check auth
+###
+GET http://localhost:5000/auth

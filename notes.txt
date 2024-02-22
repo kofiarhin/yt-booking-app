@@ -1,0 +1,6 @@
+React Node.js Booking App Full Tutorial | MERN Stack Reservation App (JWT, Cookies, Redux)
+
+Source Code: https://github.com/kofiarhin/yt-booking-app
+
+Embark on a journey to create a powerful Hotel Booking Platform with this comprehensive tutorial. Learn how to leverage the combined strength of Node.js, React, Redux, Express, and MongoDB to build a robust and efficient application. From seamless user experiences to backend intricacies, this step-by-step guide covers it all. Whether you're a seasoned developer or a coding enthusiast, join us in mastering the art of hotel bookings with cutting-edge technologies. Let's transform your skills and create an exceptional hotel booking app together!
+

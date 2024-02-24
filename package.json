@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon server/server.js"
+    "server": "nodemon server/server.js",
+    "admin": "npm run start --prefix admin",
+    "dev": "concurrently \"npm run server\" \"npm run admin\""
   },
   "keywords": [],
   "author": "",
@@ -17,5 +19,8 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

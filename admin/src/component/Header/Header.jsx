@@ -21,6 +21,7 @@ const Header = () => {
 
         <nav>
           <Link to="/">Home</Link>
+          <Link to="/rooms">Rooms</Link>
           {user ? (
             <>
               <Link to="/rooms/create">Create</Link>

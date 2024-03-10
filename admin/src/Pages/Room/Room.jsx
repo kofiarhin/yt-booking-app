@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { reset, deleteRoom } from "../../features/room/roomSlice";
+import Carousel from "../../component/Carousel/Carousel";
 
 const Room = () => {
   const { user } = useSelector((state) => state.auth);
@@ -22,7 +23,6 @@ const Room = () => {
   }, [isSuccess]);
   useEffect(() => {
     const getRoom = async () => {
-      dispatch(reset());
       try {
         const res = await fetch(`/api/rooms/${id}`);
 
@@ -39,27 +39,29 @@ const Room = () => {
   const handleDelete = () => {
     dispatch(deleteRoom(id));
   };
+
   return (
     <div id="room">
       <div className="container">
         {room ? (
           <div>
             <div className="img-wrapper">
-              <img src={room.img[0]} alt="" />
+              <Carousel data={room.img} />
+
+              {/* <img src={room.img[0]} alt="" /> */}
             </div>
             <div className="text-wrapper">
               <h1 className="heading center"> {room.name} </h1>
               <p> {room.desc} </p>
               <h2> ${room.price.toFixed(2)} </h2>
+            </div>
+
+            {user && user.isAdmin ? (
               <div className="cta-wrapper">
                 <Link to={`/edit/rooms/${room._id}`}>Edit Room</Link>
-                {user.isAdmin ? (
-                  <button onClick={handleDelete}>Delete Room</button>
-                ) : (
-                  "dont show"
-                )}
+                <button onClick={handleDelete}>Delete Room</button>
               </div>
-            </div>
+            ) : null}
           </div>
         ) : null}
       </div>

@@ -20,7 +20,6 @@ const Carousel = ({ data }) => {
     }, 8000);
   }, []);
 
-  console.log(currentIndex);
   return (
     <div className="carousel-wrapper">
       <img src={data[currentIndex]} />

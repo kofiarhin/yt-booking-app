@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getBookings } from "../../features/booking/bookingSlice";
+import { getBookings, reset } from "../../features/booking/bookingSlice";
 import BookingList from "../../component/BookingList/BookingList";
 
 const Dashboard = () => {
@@ -9,7 +9,14 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { bookings } = useSelector((state) => state.booking);
+
+  const { bookings, isSuccess } = useSelector((state) => state.booking);
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(reset());
+    }
+  }, [isSuccess]);
   useEffect(() => {
     if (!user) {
       navigate("/login");

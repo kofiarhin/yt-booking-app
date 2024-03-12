@@ -25,6 +25,7 @@ const BookingList = ({ data }) => {
               <th>Name</th>
               <th>Email</th>
               <th>Room</th>
+              <th>Confirmed</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -34,6 +35,7 @@ const BookingList = ({ data }) => {
                 <td>{item.name}</td>
                 <td>{item.email}</td>
                 <td>{item.roomId.name}</td>
+                <td>{item.confirmed ? "Yes" : "No"}</td>
                 <td>
                   <Link to={`/bookings/${item._id}`}> View</Link>
                 </td>

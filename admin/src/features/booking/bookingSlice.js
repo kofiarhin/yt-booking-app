@@ -70,6 +70,29 @@ export const deleteBooking = createAsyncThunk(
   }
 );
 
+export const confirmBooking = createAsyncThunk(
+  "booking/confirm",
+  async (bookingId, thunkApi) => {
+    try {
+      const res = await fetch(`/api/bookings/${bookingId}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "PUT",
+        body: JSON.stringify({ confirmed: true }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return thunkApi.rejectWithValue(data);
+      }
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+// booking slice
 export const bookingSlice = createSlice({
   name: "booking",
   initialState,
@@ -120,6 +143,19 @@ export const bookingSlice = createSlice({
         );
       })
       .addCase(deleteBooking.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(confirmBooking.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(confirmBooking.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.bookings = action.payload;
+      })
+      .addCase(confirmBooking.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

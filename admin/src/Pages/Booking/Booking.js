@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import "./booking.styles.scss";
 import { useParams, useNavigate } from "react-router-dom";
-import { deleteBooking, reset } from "../../features/booking/bookingSlice";
+import {
+  confirmBooking,
+  deleteBooking,
+  reset,
+} from "../../features/booking/bookingSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 // booking
@@ -10,17 +14,18 @@ const Booking = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isSuccess } = useSelector((state) => state.booking);
+  const { isSuccess, isLoading, isError, message } = useSelector(
+    (state) => state.booking
+  );
 
   const [booking, setBooking] = useState(null);
 
   useEffect(() => {
     if (isSuccess) {
-      // navigate to bookings
       dispatch(reset());
       navigate("/dashboard");
     }
-  }, [isSuccess]);
+  }, [isSuccess, isLoading, message, isError]);
   useEffect(() => {
     dispatch(reset());
     const getBooking = async () => {
@@ -38,6 +43,10 @@ const Booking = () => {
   const handleDelete = () => {
     dispatch(deleteBooking(id));
   };
+
+  const handleConfirm = () => {
+    dispatch(confirmBooking(id));
+  };
   return (
     <div id="booking">
       <h1 className="heading center">Booking</h1>
@@ -54,7 +63,7 @@ const Booking = () => {
           </div>
 
           <div className="cta-wrapper">
-            <button>confirm</button>
+            <button onClick={handleConfirm}>confirm</button>
             <button className="danger" onClick={handleDelete}>
               Delete
             </button>

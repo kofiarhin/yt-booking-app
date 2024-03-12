@@ -1,0 +1,26 @@
+#booking {
+  .content-wrapper {
+    width: 540px;
+    max-width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    p {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    .cta-wrapper {
+      button {
+        outline: none;
+        border: none;
+        cursor: pointer;
+        margin-left: 1rem;
+        padding: 1rem 2rem;
+        background-color: black;
+        color: white;
+        &.danger {
+          background-color: red;
+        }
+      }
+    }
+  }
+}

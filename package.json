@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/server.js",
+    "client": "npm run start --prefix client",
     "admin": "npm run start --prefix admin",
-    "dev": "concurrently \"npm run server\" \"npm run admin\""
+    "dev-admin": "concurrently \"npm run server\" \"npm run admin\"", 
+    "dev-client": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
